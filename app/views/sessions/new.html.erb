@@ -4,14 +4,19 @@
     <div class="col-md-6 col-md-offset-3">
         <%= form_for(:session, url: login_path) do |f| %>
         
-        <%= f.label :email %>
-        <%= f.email_field :email, class: 'form-controll' %>
+        <div class="form-group">
+            <%= f.label :email, class: "controll-label" %>
+            <%= f.email_field :email, class: 'form-controll' %>
+        </div>
         
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-controll' %>
+        <div class="form-group">
+            <%= f.label :password, class: "controll-label" %>
+            <%= f.password_field :password, class: 'form-controll' %>
+        </div>
         
-        <%= f.submit 'Log in', class: 'btn btn-parimary' %>
-        
+        <div class="form-group">
+            <%= f.submit 'Log in', class: 'btn btn-parimary' %>
+        </div>
         <% end %>
         
         <p>New user? <%= link_to "Sign up now!", signup_path %></p>
