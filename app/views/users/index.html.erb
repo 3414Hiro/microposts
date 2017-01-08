@@ -1,0 +1,9 @@
+<h2 id="userindex">All Users</h2>
+<ul class="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= gravatar_for user %>
+      <%= link_to user.name, user %>
+    </li>
+  <% end %>
+</ul>

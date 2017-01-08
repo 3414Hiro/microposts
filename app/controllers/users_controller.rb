@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :followers, :followings]
   before_action :user_match, only: [:edit, :update]
+  before_action :logged_in_user, only: [:index, :followings, :followers]
+  
+  def index
+    @users = User.all
+  end
   
   def show
-    @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
   end
   
@@ -24,7 +29,6 @@ class UsersController < ApplicationController
   end
   
   def update
-    @user = current_user
     if @user.update(user_params)
       # 保存に成功した場合はトップページへリダイレクト
       redirect_to current_user , notice: 'メッセージを編集しました'
@@ -34,7 +38,19 @@ class UsersController < ApplicationController
     end
   end
   
+  def followings
+    @users = @user.following_users
+  end
+  
+  def followers
+    @users = @user.follower_users
+  end
+  
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation, :location, :bio)
