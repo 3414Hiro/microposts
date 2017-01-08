@@ -22,15 +22,16 @@ class User < ActiveRecord::Base
     
     # フォローしているユーザーをアンフォローする
     def unfollow(other_user)
-        following_relationships = following_relationships.find_by(followed_id: other_user.id)
-        following_relationships.destroy if following_relationship
+        following_relationship = following_relationships.find_by(followed_id: other_user.id)
+        following_relationship.destroy if following_relationship
     end
+    
     
     # あるユーザーをフォローしているかどうか？
     def following?(other_user)
         following_users.include?(other_user)
     end
-
+    
     
     
     validates :name, presence: true, length: { maximum: 50 }
