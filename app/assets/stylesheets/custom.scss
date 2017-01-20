@@ -203,6 +203,9 @@ aside {
   font-size: 48px;
   line-height: 1.6em;
 }
+#user_location_bio{
+  font-size: 24px;
+}
 .followbtn a{
   color: white;
 }
@@ -212,11 +215,18 @@ aside {
   ul{
     list-style: none;
   }
+  ul li{
+    border-top: 1px solid gray;
+  }
   h2{
     text-align: left;
-    font-size: 40px;
+    font-size: 32px;
   }
   ul li a{
     font-size: 36px;
   }
+}
+.favorites{
+  text-align: left;
+  font-size: 32px;
 }

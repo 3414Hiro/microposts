@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :followers, :followings]
+  before_action :set_user, only: [:show, :edit, :update, :followers, :followings, :favorites]
   before_action :user_match, only: [:edit, :update]
-  before_action :logged_in_user, only: [:index, :followings, :followers]
+  before_action :logged_in_user, only: [:index, :followings, :followers, :favorites]
   
   def index
     @users = User.all
@@ -44,6 +44,10 @@ class UsersController < ApplicationController
   
   def followers
     @users = @user.follower_users
+  end
+  
+  def favorites
+   @microposts = @user.favorite_microposts
   end
   
   private

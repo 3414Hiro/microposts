@@ -14,6 +14,10 @@ class User < ActiveRecord::Base
                                       dependent: :destroy
     
     has_many :follower_users, through: :follower_relationships, source: :follower
+    
+    has_many :favorites, dependent: :destroy
+    
+    has_many :favorite_microposts, through: :favorites, source: :micropost
 
     # 他のユーザーをフォローする
     def follow(other_user)
@@ -26,7 +30,6 @@ class User < ActiveRecord::Base
         following_relationship.destroy if following_relationship
     end
     
-    
     # あるユーザーをフォローしているかどうか？
     def following?(other_user)
         following_users.include?(other_user)
@@ -35,6 +38,21 @@ class User < ActiveRecord::Base
     def feed_items
         Micropost.where(user_id: following_user_ids + [self.id])
     end
+    
+    def favorite(micropost)
+        #Favorite.create(micropost_id: micropost.id, user_id: self.id)
+        favorites.find_or_create_by(micropost_id: micropost.id)
+    end
+        
+    def unfavorite(micropost)
+        favorite = favorites.find_by(micropost_id: micropost.id)
+        favorites.destroy if favorite
+    end
+    
+    def favorite?(micropost)
+        favorite_microposts.include?(micropost)
+    end
+        
     
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
