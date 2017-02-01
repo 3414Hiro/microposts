@@ -9,6 +9,7 @@
     <section id="user_location_bio">
       <p>location : <%= @user.location %></p>
       <p>bio : <%= @user.bio %></p>
+      <p>Favo: <%= link_to "My Favorites", favorites_user_path(@user) %></p>
     </section>
     <section>
       <ul class="followbtn">
@@ -21,8 +22,7 @@
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in? %>
     <% if @user.microposts.any? %>
-      <h3 id="personal-micropost">Microposts (<%= @user.microposts.count %>)<%= link_to "Favorites", favorites_user_path(@user) %></h3>
-      
+      <h3 id="personal-micropost">Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render @microposts %>
       </ol>
