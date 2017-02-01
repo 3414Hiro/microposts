@@ -1,6 +1,0 @@
-<%= form_for(current_user.microposts.find_by(original_id: micropost.id),
-             html: { method: :delete },
-             remote: true) do |f| %>
-  <%= f.submit "Unre", class: "unretweet_form btn btn-default" %>
-  <button class="btn btn-success"><i class="fa fa-retweet"></i></button>
-<% end %>
