@@ -50,6 +50,10 @@ class UsersController < ApplicationController
    @microposts = @user.favorite_microposts
   end
   
+  def retweet_to?(micropost)
+    microposts.exists?(original_id: micropost.id)
+  end
+  
   private
   
   def set_user

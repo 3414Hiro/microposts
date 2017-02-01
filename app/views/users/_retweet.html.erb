@@ -1,0 +1,5 @@
+<%= form_for(current_user.microposts.build, remote: true) do |f| %>
+  <div><%= hidden_field_tag :micropost_id, micropost.id %></div>
+  <%= f.submit "Re", class: "retweet_form btn btn-success" %>
+  <button class="btn btn-default"><i class="fa fa-retweet" aria-hidden="true"></i></button>
+<% end %>

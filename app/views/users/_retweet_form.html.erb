@@ -1,0 +1,9 @@
+<% if current_user != @user %>
+  <div id="retweet_form_<%= micropost.id %>">
+  <% if current_user.retweet_to?(micropost) %>
+    <%= render 'users/unretweet', micropost: micropost %>
+  <% else %>
+    <%= render 'users/retweet', micropost: micropost %>
+  <% end %>
+  </div>
+<% end %>

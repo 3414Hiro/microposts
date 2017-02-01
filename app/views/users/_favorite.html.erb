@@ -1,4 +1,5 @@
 <%= form_for(current_user.favorites.build, remote: true) do |f| %>
   <div><%= hidden_field_tag :micropost_id, micropost.id %></div>
-  <%= f.submit "Favo", class: "btn btn-primary" %>
+  <%= f.submit "Favo", class: "favorite_form btn btn-primary" %>
+  <button class="btn btn-default"><i class="fa fa-heart-o"></i></button>
 <% end %>

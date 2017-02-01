@@ -52,7 +52,12 @@ class User < ActiveRecord::Base
     def favorite?(micropost)
         favorite_microposts.include?(micropost)
     end
-        
+    
+    def retweet_to?(micropost)
+        microposts.exists?(original_id: micropost.id)
+    end
+    
+    
     
     validates :name, presence: true, length: { maximum: 50 }
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
